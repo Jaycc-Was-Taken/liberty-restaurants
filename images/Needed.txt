@@ -1,0 +1,82 @@
+Images still needing made
+*****FINISHED******
+Wholesale Market
+    Whole Tomato - burger-tomato
+    Whole Lettuce
+    Whole Potato
+    Whole Apple Pie
+    Whole Peach Cobbler
+    Coconut Cream (Creme?) Pie
+    Generic Soda Cup
+    Generic Tea Cup
+    Generic Coffee Cup
+    Soda Syrup
+    Slushie Syrup
+    Energy Shot
+    Green Tea Powder
+    Tapioca Pearls
+    Half Pint of Milk
+    Chocolate Powder
+    Pint of Ice Cream
+    Coffee Grounds
+    Eggs
+    Beef Steak raw_beef
+    Cooked Steak beef
+    Burger Meat burger_raw
+    Cooked Burger burger-meat
+    Burger Bun burger-bun
+    Loaf of Bread
+    Bag of Rice
+    Seaweed Strip
+    Sushi Grade Salmon
+    Pizza Dough
+    Spices
+    Raw Bacon raw_bacon
+    Blank Cupcake
+    Pink Icing
+    Red Icing
+    Blue Icing
+    Green Icing
+    Sprinkles
+*****FINISHED******
+
+****Below still needs images****
+Prep Items 
+    Tomato Slices
+    Lettuce Slices
+    Hashbrowns
+    Apply Pie Slice (on plate)
+    Peach Cobbler Slice (on plate)
+    Coconut Cream Pie Slice (on plate)
+    Slice of Bread (2 pieces of bread in image)
+    Pizza This Secret Sauce (tomato sauce)
+    Garlic Bread
+    Fancy Pink Cupcake
+    Fancy Red Cupcake
+    Fancy Blue Cupcake
+    Fancy Green Cupcake
+
+Drink Items
+    Pops Soda Cup
+    Cup of Coffee
+    Chocolate Malt
+    uWu tea (Bubble tea, no milk)
+    KumbuWucha Tea
+    uWu tea with milk (bubble tea with milk)
+    Pizza This Soda Cup
+    Pizza This Energy Cup
+    Pizza This Slushie
+
+Food Items
+    Pops Burger
+    Pops Breakfast (Steak, Eggs, Hashbrowns)
+    Pops BLT
+    SuWushi
+    uWurice (omirice with uWu on it)
+    Some kind of uWu themed ramed/soup
+    Cheese Pizza
+    Pepporoni Pizza
+    Hawaiian Pizza
+    Cheese Pizza Slice
+    Pepporoni Pizza Slice
+    Hawaiian Pizza Slice
