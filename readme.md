@@ -163,6 +163,12 @@
         ["burgershot-vanilla-meteorite"]  = {["name"] = "burgershot-vanilla-meteorite",  ["label"] = "Vanilla Meteorite",  ["weight"] = 100, ["type"] = "item", ["image"] = "burgershot-vanilla-meteorite.png",  ["unique"] = false, ["useable"] = true, ["shouldClose"] = true, ["combinable"] = nil, ["description"] = "A chunk of frozen vanilla icecream."},
         ["burgershot-french-fries"]  = {["name"] = "burgershot-french-fries",  ["label"] = "French Fries",  ["weight"] = 100, ["type"] = "item", ["image"] = "burgershot-french-fries.png",  ["unique"] = false, ["useable"] = true, ["shouldClose"] = true, ["combinable"] = nil, ["description"] = "Delicious fried sticks of potato."},
         
+### Add to DPEmotes for the animation.
+
+   ["cokecut"] = {"anim@amb@business@coc@coc_unpack_cut@", "fullcut_cycle_v1_cokecutter", "Coke Cut", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
 
 
 
