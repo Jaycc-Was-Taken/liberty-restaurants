@@ -1,39 +1,64 @@
 Config = {}
-
--- Ped Spawn Stuff
-Config = {
-	Blips = true, -- Show Blip
-	Invincible = true, -- Damage
-	Frozen = true, -- Move or not
-	Stoic = true, -- True = no reactions
-	Fade = true, -- Fade in when you come up instead of falling down.
-	Distance = 40.0, -- How far away the ped will spawn in.
-    UseMarket = true, -- If you want to use the wholesale market built the Config.ShopItems around line 800 in this config.
-    UseConsumables = true, -- Basic Consumable effects for food and drinks, gives hunger/thirst.
-}
-Config.PedList = {
-    { 
-        model = "mp_f_forgery_01", 
-        coords = vector3(375.41, -1501.41, 29.29), 
-        heading = 200, 
-        gender = "female" 
+-- Consumables List
+Config.Consumables = {
+    ['drink'] = {
+        'pops-soda',
+        'pops-coffee',
+        'pops-chocolate-malt',
+        'uwu-uwutea',
+        'uwu-kumbuwucha-tea',
+        'uwu-uwutea-milk',
+        'pizzathis-soda',
+        'pizzathis-energy',
+        'pizzathis-slushie',
+        'burgershot-soda',
+        'burgershot-chocolate-meteorite',
+        'burgershot-vanilla-meteorite',
     },
-}
--- Different Jobs that can Access the Wholesale Shop
-Config.CafeJobs = {
-    "popsdiner",
-    "uwucafe",
-    "pizzathis",
-    "burgershot",
+    ['food'] = {
+        'pops-burger',
+        'pops-breakfast',
+        'pops-blt',
+        'apple-pie-slice',
+        'peach-cobbler-slice',
+        'coconut-cream-slice',
+        'uwu-pink-uwucake',
+        'uwu-red-uwucake',
+        'uwu-blue-uwucake',
+        'uwu-green-uwucake',
+        'uwu-suwushi',
+        'uwu-uwurice',
+        'pizzathis-garlic-bread',
+        'pizzathis-cheese-slice',
+        'pizzathis-pepperoni-slice',
+        'pizzathis-hawaiian-slice',
+        'burgershot-heartstopper',
+        'burgershot-bleeder',
+        'burgershot-moneyshot',
+        'burgershot-french-fries',
+    },
 }
 --Menu Items
 Config.CookMenu = {
     ["popsdiner"] = { -- Location name, this name is utilized by all parts of this script, ensure that it is consistent for the specific restaurant you are making in the config.
         [1] = {
-            Name = "Bacon and Eggs", -- Item being made for QB-Menu title
-            Text = "Bacon x 4, Eggs x 2,", -- Required items for QB-Menu text
+            Name = "Grill Chicken",
+            Text = "Raw Chicken x 1",
             RequiredItems = {
-                [1] = { item = "raw_bacon", amount = 4 }, -- 1st Required Item Name and Amount
+                [1] = { item = "chicken", amount = 1 },
+
+            },
+            ReturnItem = {
+                [1] = { item = "grilledchicken", amount = 1 }
+            },
+            time = 12000,
+            spatula = true,
+        },
+        [2] = {
+            Name = "Bacon and Eggs", -- Item being made for QB-Menu title
+            Text = "Bacon x 3, Eggs x 2,", -- Required items for QB-Menu text
+            RequiredItems = {
+                [1] = { item = "raw_bacon", amount = 3 }, -- 1st Required Item Name and Amount
                 [2] = { item = "egg", amount = 2 }, -- 2nd Required Item Name and Amount (No limit on required items or amounts)
             },
             ReturnItem = {
@@ -42,41 +67,12 @@ Config.CookMenu = {
             time = 12000, -- How long the progress bar takes
             spatula = true, -- Spatula emote (true) or Coke Cut emote (false)
         },
-        [2] = {
-            Name = "Hashbrowns",
-            Text = "Potato x 2, Flour x 2, Eggs x 2",
-            RequiredItems = {
-                [1] = { item = "potato", amount = 2 },
-                [2] = { item = "flour", amount = 2 },
-                [3] = { item = "egg", amount = 2 },
-
-
-            },
-            ReturnItem = {
-                [1] = { item = "hashbrowns", amount = 2 }
-            },
-            time = 12000,
-            spatula = true,
-        },
         [3] = {
-            Name = "Grill Chicken",
-            Text = "Raw chicken x 4",
-            RequiredItems = {
-                [1] = { item = "chicken", amount = 4 },
-
-            },
-            ReturnItem = {
-                [1] = { item = "grilledchicken", amount = 4 }
-            },
-            time = 12000,
-            spatula = true,
-        },
-        [4] = {
             Name = "Chicken Sandwich",
-            Text = "Grilled chicken x 2, Bread x 1, Mixed lettuce x 1, Secret sauce x 1",
+            Text = "Grilled chicken x 1, Bread x 1, Mixed lettuce x 1, Secret sauce x 1",
             RequiredItems = {
-                [1] = { item = "grilledchicken", amount = 2 },
-                [2] = { item = "bread", amount = 1 },
+                [1] = { item = "grilledchicken", amount = 1 },
+                [2] = { item = "loaf-of-bread", amount = 1 },
                 [3] = { item = "mixedlettuce", amount = 1 },
                 [4] = { item = "popssauce", amount = 1 },
 
@@ -86,6 +82,20 @@ Config.CookMenu = {
             },
             time = 12000,
             spatula = true,
+        },
+        [4] = {
+            Name = "Caesar Salad ",
+            Text = "Chicken x 1, Mixed Lettuce x 1, Secret Sauce x 1, Cheese x1",
+            RequiredItems = {
+                [1] = { item = "grilledchicken", amount = 1 },
+                [2] = { item = "mixedlettuce", amount = 1 },
+                [3] = { item = "popssauce", amount = 1 },
+                [4] = { item = "cheese", amount = 1 },
+            },
+            ReturnItem = {
+                [1] = { item = "caesarsalad", amount = 1 }
+            },
+            time = 12000,
         },
     },
     ["uwucafe"] = {
@@ -101,11 +111,10 @@ Config.CookMenu = {
                 [1] = { item = "uwupancake", amount = 2}
             },
             time = 12000,
-            spatula = false,
         },
         [2] = {
             Name = "Uwu Sushi",
-            Text = "Tuna x 1, Avocado x 1, Rice x 1, Nori",
+            Text = "Tuna x 1, Avocado x 1, Rice x 1, Nori Sheets x 1",
             RequiredItems = {
                 [1] = { item = "tuna", amount = 1 },
                 [2] = { item = "rice", amount = 1},
@@ -116,13 +125,12 @@ Config.CookMenu = {
                 [1] = { item = "uwusushi", amount = 2}
             },
             time = 12000,
-            spatula = false,
         },
         [3] = {
             Name = "Buddha Bowl",
-            Text = "Mixed Lettuce x 1, Tofu x 1, Avocado x 1, Umami 1",
+            Text = "Lettuce x 1, Tofu x 1, Avocado x 1, Umami x 1",
             RequiredItems = {
-                [1] = { item = "mixedlettuce", amount = 1 },
+                [1] = { item = "headoflettuce", amount = 1 },
                 [2] = { item = "tofu", amount = 1},
                 [3] = { item = "avocado", amount = 1},
                 [4] = { item = "umami", amount = 1},
@@ -131,7 +139,6 @@ Config.CookMenu = {
                 [1] = { item = "uwubudhabowl", amount = 1},
             },
             time = 12000,
-            spatula = false,
         },
         -- [3] = {
         --     Name = "",
@@ -160,7 +167,6 @@ Config.CookMenu = {
                 [1] = { item = "pizzathis-cheese-pizza", amount = 1 }
             },
             time = 30000,
-            spatula = false,
         },
         [2] = {
             Name = "Pepporoni Pizza",
@@ -169,13 +175,12 @@ Config.CookMenu = {
                 [1] = { item = "pizza-dough", amount = 1 },
                 [2] = { item = "pizzathis-secret-sauce", amount = 1 },
                 [3] = { item = "mozzarella-cheese", amount = 1 },
-                [4] = { item = "pizzathis-pepperoni-slice", amount = 2 },
+                [4] = { item = "pepperoni", amount = 2 },
             },
             ReturnItem = {
                 [1] = { item = "pizzathis-pepperoni-pizza", amount = 1 }
             },
             time = 30000,
-            spatula = false,
         },
         [3] = {
             Name = "Hawaiian Pizza",
@@ -191,7 +196,6 @@ Config.CookMenu = {
                 [1] = { item = "pizzathis-hawaiian-pizza", amount = 1}
             },
             time = 30000,
-            spatula = false,
         },
     },
     ["burgershot"] = {
@@ -242,7 +246,7 @@ Config.CookMenu = {
         },
         [4] = {
             Name = "Torpedo",
-            Text = "Tomato x 1, Lettuce x 1, Hamburger Buns x 1",
+            Text = "Tomato x 1, Lettuce x 1, Beef Patty x 2, Hamburger Buns x 1",
             RequiredItems = {
                 [1] = { item = "burger-bun", amount = 1 },
                 [2] = { item = "slicedtomato", amount = 1 },
@@ -285,22 +289,21 @@ Config.DrinkMenu = {
     ["popsdiner"] = {
         [1] = {
             Name = "Pops Soda",
-            Text = "Soda Syrup x 1, Water x 1",
+            Text = "Soda Syrup x 1, Water Bottle x 1",
             RequiredItems = {
-                [1] = { item = "burger-sodasyrup", amount = 1 },
+                [1] = { item = "soda-syrup", amount = 1 },
                 [2] = { item = "water_bottle", amount = 1 }
             },
             ReturnItem = {
                 [1] = { item = "burger-softdrink", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
     },
     ["uwucafe"] = {
         [1] = {
             Name = "Blueberry Bubbletea",
-            Text = "Tapioka Balls x 1, Tea Powder x 1, water x 1",
+            Text = "Tapioka Balls x 1, Tea Powder x 1, Water x 1",
             RequiredItems = {
                 [1] = { item = "tapiokaballs", amount = 1 },
                 [2] = { item = "tea", amount = 1 },
@@ -310,11 +313,10 @@ Config.DrinkMenu = {
                 [1] = { item = "uwububbleteablueberry", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [2] = {
             Name = "Rose Bubbletea",
-            Text = "Tapioka Balls x 1, Tea Powder x 1, water x 1",
+            Text = "Tapioka Balls x 1, Tea Powder x 1, Water x 1",
             RequiredItems = {
                 [1] = { item = "tea", amount = 1 },
                 [2] = { item = "water_bottle", amount = 1 },
@@ -324,7 +326,6 @@ Config.DrinkMenu = {
                 [1] = { item = "uwububbletearose", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [3] = {
             Name = "Mint Bubbletea",
@@ -338,7 +339,6 @@ Config.DrinkMenu = {
                 [1] = { item = "uwububbleteamint", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
     },
     ["pizzathis"] = {
@@ -353,7 +353,6 @@ Config.DrinkMenu = {
                 [1] = { item = "pizzathis-soda", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [2] = {
             Name = "Pizza This Energy",
@@ -367,7 +366,6 @@ Config.DrinkMenu = {
                 [1] = { item = "pizzathis-energy", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [3] = {
             Name = "Pizza This Slushie",
@@ -380,7 +378,6 @@ Config.DrinkMenu = {
                 [1] = { item = "pizzathis-slushie", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
     },
     ["burgershot"] = {
@@ -388,14 +385,13 @@ Config.DrinkMenu = {
             Name = "Bugershot Soda",
             Text = "Soda Syrup x 1, Water x 1",
             RequiredItems = {
-                [1] = { item = "burger-sodasyrup", amount = 1 },
+                [1] = { item = "soda-syrup", amount = 1 },
                 [2] = { item = "water_bottle", amount = 1 }
             },
             ReturnItem = {
                 [1] = { item = "burger-softdrink", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [2] = {
             Name = "Bugershot Milkshake",
@@ -408,7 +404,6 @@ Config.DrinkMenu = {
                 [1] = { item = "burger-mshake", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         -- [3] = {
         --     Name = "Chocolate Meteorite",
@@ -446,22 +441,6 @@ Config.DrinkMenu = {
 Config.PrepMenu = {
     ["popsdiner"] = {
         [1] = {
-            Name = "Caesar Salad ",
-            Text = "Chicken x 1, mixed lettuce x 1, Secret sauce x 1, Bread x 1, Cheese x1",
-            RequiredItems = {
-                [1] = { item = "grilledchicken", amount = 1 },
-                [2] = { item = "mixedlettuce", amount = 1 },
-                [3] = { item = "popssauce", amount = 1 },
-                [4] = { item = "bread", amount = 1 },
-                [5] = { item = "cheese", amount = 1 },
-            },
-            ReturnItem = {
-                [1] = { item = "caesarsalad", amount = 1 }
-            },
-            time = 12000,
-            spatula = false,
-        },
-        [2] = {
             Name = "Cut Apple Pie",
             Text = "Apple Pie x 1",
             RequiredItems = {
@@ -471,9 +450,8 @@ Config.PrepMenu = {
                 [1] = { item = "applepieslice", amount = 4},
             },
             time = 12000,
-            spatula = false,
         },
-        [3] = {
+        [2] = {
             Name = "Cut Peach Cobbler",
             Text = "Peach Cobbler x 1",
             RequiredItems = {
@@ -483,9 +461,8 @@ Config.PrepMenu = {
                 [1] = { item = "peachcobblerslice", amount = 4},
             },
             time = 12000,
-            spatula = false,
         },
-        [4] = {
+        [3] = {
             Name = "Cut Cocounut Cream Pie",
             Text = "Cocounut Cream Pie x 1",
             RequiredItems = {
@@ -495,7 +472,6 @@ Config.PrepMenu = {
                 [1] = { item = "coconutcreampieslice", amount = 4},
             },
             time = 12000,
-            spatula = false,
         },
     },
     ["uwucafe"] = {
@@ -511,7 +487,6 @@ Config.PrepMenu = {
                 [1] = { item = "uwumisosoup", amount = 1},
             },
             time = 12000,
-            spatula = false,
         },
         [2] = {
             Name = " uWu Cupcake",
@@ -527,7 +502,6 @@ Config.PrepMenu = {
                 [1] = { item = "uwucupcake", amount = 4},
             },
             time = 12000,
-            spatula = false,
         },
         [3] = {
             Name =  "Vanilla Sandy",
@@ -543,7 +517,6 @@ Config.PrepMenu = {
                 [1] = { item = "uwuvanillasandy", amount = 2}
             },
             time = 12000,
-            spatula = false,
         },
         [4] = {
             Name =  "Chocolate Sandy",
@@ -559,36 +532,33 @@ Config.PrepMenu = {
                 [1] = { item = "uwuchocsandy", amount = 2}
             },
             time = 12000,
-            spatula = false,
         },
-        [4] = {
-            Name =  "UwU Bento Box",
-            Text = "Uwu Sushi x 1, Uwu BT Rose x 1, Uwu Buddha Bowl",
-            RequiredItems = {
-                [1] = { item = "uwusushi", amount = 1 },
-                [2] = { item = "uwububbletearose", amount = 1},
-                [3] = { item = "uwubudhabowl", amount = 1},
-            },
-            ReturnItem = {
-                [1] = { item = "uwubentobox", amount = 1}
-            },
-            time = 12000,
-            spatula = false,
-        },
+        -- [4] = {
+        --     Name =  "UwU Bento Box",
+        --     Text = "Uwu Sushi x 1, Uwu BT Rose x 1, Uwu Buddha Bowl",
+        --     RequiredItems = {
+        --         [1] = { item = "uwusushi", amount = 1 },
+        --         [2] = { item = "uwububbletearose", amount = 1},
+        --         [3] = { item = "uwubudhabowl", amount = 1},
+        --     },
+        --     ReturnItem = {
+        --         [1] = { item = "uwubentobox", amount = 1}
+        --     },
+        --     time = 12000,
+        -- },
     },
     ["pizzathis"] = {
         [1] = {
             Name = "Pizza This Secret Sauce",
-            Text = "Tomato x 2, Energy Shot x 2",
+            Text = "Tomato x 3, Energy Shot x 3",
             RequiredItems = {
-                [1] = { item = "tomato", amount = 2 },
-                [2] = { item = "energy-shot", amount = 2},
+                [1] = { item = "tomato", amount = 3 },
+                [2] = { item = "energy-shot", amount = 3},
             },
             ReturnItem = {
-                [1] = { item = "pizzathis-secre-sauce", amount = 4}
+                [1] = { item = "pizzathis-secret-sauce", amount = 4}
             },
             time = 12000,
-            spatula = false,
         },
         [2] = {
             Name = "Pizza This Garlic Bread",
@@ -599,10 +569,9 @@ Config.PrepMenu = {
                 [3] = { item = "cooking-spices", amount = 1},
             },
             ReturnItem = {
-                [1] = { item = "pizzathis-garlic-bread", amount = 6},
+                [1] = { item = "pizzathis-garlic-bread", amount = 1},
             },
             time = 15000,
-            spatula = false,
         },
         [3] = {
             Name = "Slice Pepperoni Stick",
@@ -611,10 +580,9 @@ Config.PrepMenu = {
                 [1] = { item = "pepperoni-stick", amount = 1 },
             },
             ReturnItem = {
-                [1] = { item = "pizzathis-pepperoni-slice", amount = 4}
+                [1] = { item = "pepperoni", amount = 2}
             },
             time = 15000,
-            spatula = false,
         },
         [4] = {
             Name = "Slice Packaged Ham",
@@ -626,7 +594,6 @@ Config.PrepMenu = {
                 [1] = { item = "pizzathis-ham-slices", amount = 4},
             },
             time = 15000,
-            spatula = false,
         },
         [5] = {
             Name = "Slice Cheese Pizza",
@@ -638,7 +605,6 @@ Config.PrepMenu = {
                 [1] = { item = "pizzathis-cheese-slice", amount = 6},
             },
             time = 20000,
-            spatula = false,
         },
         [6] = {
             Name = "Slice Pepperoni Pizza",
@@ -650,7 +616,6 @@ Config.PrepMenu = {
                 [1] = { item = "pizzathis-pepperoni-slice", amount = 6},
             },
             time = 20000,
-            spatula = false,
         },
         [7] = {
             Name = "Slice Hawaiian Pizza",
@@ -662,7 +627,6 @@ Config.PrepMenu = {
                 [1] = { item = "pizzathis-hawaiian-slice", amount = 6},
             },
             time = 20000,
-            spatula = false,
         },
     },
     ["burgershot"] = {
@@ -676,7 +640,6 @@ Config.PrepMenu = {
                 [1] = { item = "slicedtomato", amount = 4},
             },
             time = 12000,
-            spatula = false,
         },
         [2] = {
             Name = "Slice Lettuce",
@@ -688,7 +651,6 @@ Config.PrepMenu = {
                 [1] = { item = "burger-lettuce", amount = 4},
             },
             time = 12000,
-            spatula = false,
         },
         [3] = {
             Name = "Chop Potato into Fries",
@@ -700,22 +662,20 @@ Config.PrepMenu = {
                 [1] = { item = "rawfries", amount = 1},
             },
             time = 12000,
-            spatula = false,
         },
-        [4] = {
-            Name = "Murder Meal",
-            Text = "Fries x 1, Heartstopper x 1, Softdrink x 1",
-            RequiredItems = {
-                [1] = { item = "burger-fries", amount = 1 },
-                [2] = { item = "burger-heartstopper", amount = 1 },
-                [3] = { item = "burger-softdrink", amount = 1 },
-            },
-            ReturnItem = {
-                [1] = { item = "burger-murdermeal", amount = 1},
-            },
-            time = 6000,
-            spatula = false,
-        },
+        -- [4] = {
+        --     Name = "Murder Meal",
+        --     Text = "Fries x 1, Heartstopper x 1, Softdrink x 1",
+        --     RequiredItems = {
+        --         [1] = { item = "burger-fries", amount = 1 },
+        --         [2] = { item = "burger-heartstopper", amount = 1 },
+        --         [3] = { item = "burger-softdrink", amount = 1 },
+        --     },
+        --     ReturnItem = {
+        --         [1] = { item = "burger-murdermeal", amount = 1},
+        --     },
+        --     time = 6000,
+        -- },
         [5] = {
             Name = "Meat Free",
             Text = "Tomato x 4, Lettuce x 4, Hamburger Buns x 1",
@@ -743,7 +703,6 @@ Config.MiscMenu = { -- Misc menu for locations that dont fit elsewhere
                 [1] = { item = "burger-fries", amount = 2},
             },
             time = 12000,
-            spatula = false,
         },
     },
     ["popsdiner"] = { --pôps coffee
@@ -751,7 +710,7 @@ Config.MiscMenu = { -- Misc menu for locations that dont fit elsewhere
             Name = "Cup of Coffee",
             Text = "Coffee Grounds x 1, Milk x 1",
             RequiredItems = {
-                [1] = { item = "coffeegrounds", amount = 2 },
+                [1] = { item = "coffeegrounds", amount = 1 },
                 [2] = { item = "milk", amount = 1 },
 
             },
@@ -759,83 +718,32 @@ Config.MiscMenu = { -- Misc menu for locations that dont fit elsewhere
                 [1] = { item = "coffeemug", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [2] = {
             Name = "Hot Chocolate",
-            Text = "Chocolate Powder x 2, Milk x 1",
+            Text = "Chocolate Powder x 1, Milk x 1",
             RequiredItems = {
-                [1] = { item = "chocolatepowder", amount = 2 },
+                [1] = { item = "chocolatepowder", amount = 1 },
                 [2] = { item = "milk", amount = 1 },
             },
             ReturnItem = {
                 [1] = { item = "hotcoco", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
         [3] = {
             Name = "Cup of Tea",
-            Text = "Green tea powder x 2, Water x 1",
+            Text = "Green tea powder x 1, Water x 1",
             RequiredItems = {
-                [1] = { item = "greenteapowder", amount = 2 },
+                [1] = { item = "greenteapowder", amount = 1 },
                 [2] = { item = "water_bottle", amount = 1 },
             },
             ReturnItem = {
                 [1] = { item = "cupoftea", amount = 1}
             },
             time = 8000,
-            spatula = false,
         },
     },
-}
--- Market Shop Items, every food item can be created using items from here.
-Config.ShopItems = {
-    label = "Restaurant Wholesale Market",
-    slots = 41,
-    items = {
-        [1] = { name = "tomato", price = 0, amount = 100, info = {}, type = "item", slot = 1, },
-        [2] = { name = "headoflettuce", price = 0, amount = 100, info = {}, type = "item", slot = 2, },
-        [3] = { name = "potato", price = 0, amount = 100, info = {}, type = "item", slot = 3, },
-        [4] = { name = "applepie", price = 0, amount = 100, info = {}, type = "item", slot = 4, },
-        [5] = { name = "peachcobbler", price = 0, amount = 100, info = {}, type = "item", slot = 5, },
-        [6] = { name = "coconutcreampie", price = 0, amount = 100, info = {}, type = "item", slot = 6, },
-        [7] = { name = "burger-sodasyrup", price = 0, amount = 100, info = {}, type = "item", slot = 7, },
-        [8] = { name = "energyshot", price = 0, amount = 100, info = {}, type = "item", slot = 8, },
-        [9] = { name = "greenteapowder", price = 0, amount = 100, info = {}, type = "item", slot = 9, },
-        [10] = { name = "tapiokaballs", price = 0, amount = 100, info = {}, type = "item", slot = 10, },
-        [11] = { name = "popssauce", price = 0, amount = 100, info = {}, type = "item", slot = 11, },
-        [12] = { name = "chocolatepowder", price = 0, amount = 100, info = {}, type = "item", slot = 12, },
-        [13] = { name = "coffeegrounds", price = 0, amount = 100, info = {}, type = "item", slot = 13, },
-        [14] = { name = "egg", price = 0, amount = 100, info = {}, type = "item", slot = 14, },
-        [15] = { name = "cheese", price = 0, amount = 100, info = {}, type = "item", slot = 15, },
-        [16] = { name = "burger-meat", price = 0, amount = 100, info = {}, type = "item", slot = 16, },
-        [17] = { name = "burger-bun", price = 0, amount = 100, info = {}, type = "item", slot = 17, },
-        [18] = { name = "bread", price = 0, amount = 100, info = {}, type = "item", slot = 18, },
-        [19] = { name = "rice", price = 0, amount = 100, info = {}, type = "item", slot = 19, },
-        [20] = { name = "pizza-dough", price = 0, amount = 100, info = {}, type = "item", slot = 20, },
-        [21] = { name = "chicken", price = 0, amount = 100, info = {}, type = "item", slot = 21, },
-        [22] = { name = "raw_bacon", price = 0, amount = 100, info = {}, type = "item", slot = 22, },
-        [23] = { name = "sprinkles", price = 0, amount = 100, info = {}, type = "item", slot = 23, },
-        [24] = { name = "pineapple", price = 0, amount = 100, info = {}, type = "item", slot = 24, },
-        [25] = { name = "pepperoni-stick", price = 0, amount = 100, info = {}, type = "item", slot = 25, },
-        [26] = { name = "packaged-ham", price = 0, amount = 100, info = {}, type = "item", slot = 26, },
-        [27] = { name = "flour", price = 0, amount = 100, info = {}, type = "item", slot = 27, },
-        [28] = { name = "milk", price = 0, amount = 100, info = {}, type = "item", slot = 28, },
-        [29] = { name = "misopaste", price = 0, amount = 100, info = {}, type = "item", slot = 29, },
-        [30] = { name = "tea", price = 0, amount = 100, info = {}, type = "item", slot = 30, },
-        [31] = { name = "tofu", price = 0, amount = 100, info = {}, type = "item", slot = 31, },
-        [32] = { name = "rawsugar", price = 0, amount = 100, info = {}, type = "item", slot = 32, },
-        [33] = { name = "tuna", price = 0, amount = 100, info = {}, type = "item", slot = 33, },
-        [34] = { name = "avocado", price = 0, amount = 100, info = {}, type = "item", slot = 34, },
-        [35] = { name = "chocolate", price = 0, amount = 100, info = {}, type = "item", slot = 35, },
-        [36] = { name = "vanillabean", price = 0, amount = 100, info = {}, type = "item", slot = 36, },
-        [37] = { name = "nori", price = 0, amount = 100, info = {}, type = "item", slot = 37, },
-        [38] = { name = "umami", price = 0, amount = 100, info = {}, type = "item", slot = 38, },
-        [39] = { name = "mixedlettuce", price = 0, amount = 100, info = {}, type = "item", slot = 39, },
-        [40] = { name = "mango", price = 0, amount = 100, info = {}, type = "item", slot = 40, },
-        [41] = { name = "water_bottle", price = 0, amount = 100, info = {}, type = "item", slot = 41, },
-    }
 }
 
 -- QB-Target Eye Locations 
@@ -921,32 +829,19 @@ Config.DrinkLocations = {
         label = "Pops Diner Drinks",
     },
     [2] = { -- Burgershot Drinks 1
-        coords = vector3(-1199.54, -895.52, 14.0),
-        length = 1.5,
-        width = 0.6,
+        coords = vector3(-1199.38, -895.47, 14.0),
+        length = 2.8,
+        width = 0.8,
         name = "burgershotdrinks1",
-        heading = 34,
+        heading = 35,
         debugPoly = false,
-        minZ = 13.8,
-        maxZ = 14.8,
+        minZ = 13.0,
+        maxZ = 15.4,
         job = "burgershot",
         location = "burgershot",
         label = "Burger Shot Drinks",
     },
-    [3] = { -- Burgershot Drinks 2
-        coords = vector3(-1189.08, -905.28, 14.0),
-        length = 1.5,
-        width = 0.6,
-        name = "burgershotdrinks2",
-        heading = 33,
-        debugPoly = false,
-        minZ = 13.8,
-        maxZ = 14.8,
-        job = "burgershot",
-        location = "burgershot",
-        label = "Burger Shot Drinks",
-    },
-    [4] = { -- uWu 1
+    [3] = { -- uWu 1
         coords = vector3(-586.84, -1061.91, 22.34),
         length = 0.8,
         width = 0.6,
@@ -959,7 +854,7 @@ Config.DrinkLocations = {
         location = "uwucafe",
         label = "uWu Cafe Drinks",
     },
-    [5] = { -- pizza 1
+    [4] = { -- pizza 1
         coords = vector3(814.09, -749.3, 26.78),
         length = 2.4,
         width = 1,
@@ -972,6 +867,19 @@ Config.DrinkLocations = {
         location = "pizzathis",
         label = "Pizza This Drinks",
     },
+    -- [5] = { -- record
+    --     coords = vector3(494.16, -69.3, 58.16),
+    --     length = 0.8,
+    --     width = 1.4,
+    --     name = "recordrink",
+    --     heading = 40,
+    --     debugPoly = false,
+    --     minZ=57.96,
+    --     maxZ=58.76,
+    --     job = "record",
+    --     location = "record",
+    --     label = "Record A Drinks",
+    -- },
 }
 Config.PrepLocations = {
     [1] = { -- burgershot
@@ -1186,6 +1094,32 @@ Config.RegisterLocations = {
         location = "pizzathis",
         label = "Pizza This Register 2",
     },
+    [11] = { -- AE
+        coords = vector3(1021.75, -2290.48, 30.51),
+        length = 1,
+        width = 1,
+        name = "ae1",
+        heading = 0,
+        debugPoly = false,
+        minZ=30.31,
+        maxZ=31.31,
+        job = "mechanic",
+        location = "mechanic",
+        label = "Auto Exotic Register",
+    },
+    [12] = { -- AE
+        coords = vector3(490.33, -82.35, 58.19),
+        length = 1,
+        width = 1,
+        name = "ae1",
+        heading = 341,
+        debugPoly = false,
+        minZ=57.54,
+        maxZ=58.54,
+        job = "record",
+        location = "record",
+        label = "Record A Studio Register",
+    },
 
 }
 Config.PickupTrays = {
@@ -1201,7 +1135,7 @@ Config.PickupTrays = {
         location = "uwucafe",
         label = "Uwu tray 1",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [2] = { -- uwu 2
         coords = vector3(-584.11, -1059.39, 22.67),
@@ -1215,7 +1149,7 @@ Config.PickupTrays = {
         location = "uwucafe",
         label = "Uwu tray 2",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [3] = { -- pops 1
         coords = vector3(1590.38, 6455.33, 26.01),
@@ -1229,7 +1163,7 @@ Config.PickupTrays = {
         location = "popsdiner",
         label = "Pops Tray 1",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [4] = { -- pops 2
         coords = vector3(1586.69, 6457.08, 26.01),
@@ -1243,7 +1177,7 @@ Config.PickupTrays = {
         location = "popsdiner",
         label = "Pops Tray 2",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [5] = { -- pops 3
         coords = vector3(1593.61, 6453.82, 26.01),
@@ -1257,7 +1191,7 @@ Config.PickupTrays = {
         location = "popsdiner",
         label = "Pops Tray 3",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [6] = { -- burger 1
         coords = vector3(-1195.29, -892.31, 14.0),
@@ -1271,7 +1205,7 @@ Config.PickupTrays = {
         location = "burgershot",
         label = "Burger Tray 1",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [7] = { -- burger 2
         coords = vector3(-1193.87, -894.38, 14.0),
@@ -1285,7 +1219,7 @@ Config.PickupTrays = {
         location = "burgershot",
         label = "Burger Tray 2",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [8] = { -- burger 3
         coords = vector3(-1193.88, -906.98, 14.0),
@@ -1299,7 +1233,7 @@ Config.PickupTrays = {
         location = "burgershot",
         label = "Burger Tray 3",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [9] = { -- pizza1
         coords = vector3(810.86, -750.77, 26.78),
@@ -1313,7 +1247,7 @@ Config.PickupTrays = {
         location = "pizzathis",
         label = "Pizza This Tray 1",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
     },
     [10] = { -- pizza1
         coords = vector3(810.87, -752.09, 26.78),
@@ -1327,7 +1261,21 @@ Config.PickupTrays = {
         location = "pizzathis",
         label = "Pizza This Tray 2",
         slots = 6,
-        maxweight = 10000,
+        maxweight = 20000,
+    },
+    [11] = { -- pizza1
+        coords = vector3(496.91, -70.5, 58.16),
+        length = 1,
+        width = 2.3,
+        name = "recordtable",
+        heading = 40,
+        debugPoly = false,
+        minZ=57.21,
+        maxZ=60.61,
+        location = "record",
+        label = "Record table",
+        slots = 6,
+        maxweight = 20000,
     },
 }
 Config.Stashes = {
@@ -1422,41 +1370,77 @@ Config.Stashes = {
         maxweight = 250000,
     },
 }
-Config.Consumables = {
-    ['drink'] = {
-        'pops-soda',
-        'pops-coffee',
-        'pops-chocolate-malt',
-        'uwu-uwutea',
-        'uwu-kumbuwucha-tea',
-        'uwu-uwutea-milk',
-        'pizzathis-soda',
-        'pizzathis-energy',
-        'pizzathis-slushie',
-        'burgershot-soda',
-        'burgershot-chocolate-meteorite',
-        'burgershot-vanilla-meteorite',
+Config.ClockIns = {
+    [1] = { -- Burgershot Clock In
+        coords = vector3(-1193.53, -898.02, 14.0),
+        length = 4.0,
+        width = 1.0,
+        name = "burgershotclockin",
+        heading = 305,
+        debugPoly = false,
+        minZ=13.0,
+        maxZ=16.4,
+        job = "burgershot",
+        location = "burgershot",
+        label = "Clock In/Out",
     },
-    ['food'] = {
-        'pops-burger',
-        'pops-breakfast',
-        'pops-blt',
-        'apple-pie-slice',
-        'peach-cobbler-slice',
-        'coconut-cream-slice',
-        'uwu-pink-uwucake',
-        'uwu-red-uwucake',
-        'uwu-blue-uwucake',
-        'uwu-green-uwucake',
-        'uwu-suwushi',
-        'uwu-uwurice',
-        'pizzathis-garlic-bread',
-        'pizzathis-cheese-slice',
-        'pizzathis-pepperoni-slice',
-        'pizzathis-hawaiian-slice',
-        'burgershot-heartstopper',
-        'burgershot-bleeder',
-        'burgershot-moneyshot',
-        'burgershot-french-fries',
+    [2] = { -- pops Clock In
+        coords = vector3(1590.7, 6458.16, 26.01),
+        length = 0.2,
+        width = 1.0,
+        name = "popsdinerclockin",
+        heading = 335,
+        debugPoly = false,
+        minZ=24.61,
+        maxZ=27.01,
+        job = "popsdiner",
+        location = "popsdiner",
+        label = "Clock In/Out",
     },
+    [3] = { -- uwu Clock In
+        coords = vector3(-594.22, -1053.3, 22.34),
+        length = 0.2,
+        width = 3.2,
+        name = "uwucafeclockin",
+        heading = 270,
+        debugPoly = false,
+        minZ=22.34,
+        maxZ=23.54,
+        job = "uwucafe",
+        location = "uwucafe",
+        label = "Clock In/Out",
+    },
+    [4] = { -- pizza Clock In
+        coords = vector3(796.4, -765.94, 31.27),
+        length = 0.8,
+        width = 1.2,
+        name = "pizzathisclockin",
+        heading = 0,
+        debugPoly = false,
+        minZ=30.87,
+        maxZ=31.47,
+        job = "pizzathis",
+        location = "pizzathis",
+        label = "Clock In/Out",
+    },
+    [5] = { -- record Clock In
+        coords = vector3(475.92, -95.61, 63.16),
+        length = 1.0,
+        width = 1.0,
+        name = "recordclockin",
+        heading = 340,
+        debugPoly = false,
+        minZ=62.96,
+        maxZ=63.76,
+        job = "record",
+        location = "record",
+        label = "Clock In/Out",
+        },
+}
+Config.RestaurantZones = {
+    ['pizzathis'] = vector2(801.72, -751.78),
+    ['burgershot'] = vector2(-1184.46, -884.88),
+    ['uwucafe'] = vector2(-581.72, -1063.63),
+    ['popsdiner'] = vector2(1586.63, 6449.37),
+    ['record'] = vector2(480.59, -96.36),
 }

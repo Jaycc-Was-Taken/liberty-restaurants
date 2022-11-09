@@ -120,6 +120,7 @@ Citizen.CreateThread(function()
                     job = dataRegister.job,
                     type = "client",
                     event = "liberty-restaurants:client:chargeCustomer",
+                    location = dataRegister.location,
                 },
             },
             distance = 3.0
@@ -174,6 +175,28 @@ Citizen.CreateThread(function()
                         label = dataStash.name,
                     }
                 },
+            },
+            distance = 3.0
+        })
+    end
+    for kc,vc in pairs(Config.ClockIns) do
+        dataClock = vc
+        exports['qb-target']:AddBoxZone('clockin'..kc, dataClock.coords, dataClock.length, dataClock.width, {
+            name = dataClock.name,
+            heading = dataClock.heading,
+            debugPoly = dataClock.debugPoly,
+            minZ = dataClock.minZ,
+            maxZ = dataClock.maxZ,
+        }, {
+            options = {
+                {
+                    label = dataClock.label,
+                    icon = dataClock.icon,
+                    job = dataClock.job,
+                    type = "client",
+                    event = "liberty-restaurants:client:toggleDuty",
+                    location = dataClock.location,
+                }
             },
             distance = 3.0
         })

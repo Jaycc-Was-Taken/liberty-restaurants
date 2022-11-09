@@ -14,25 +14,35 @@ QBCore.Functions.CreateCallback('liberty-restaurants:hasIngredients', function(s
     end
     cb(hasIngredients)
 end)
+
 RegisterNetEvent('liberty-restaurants:server:CafeAction', function(items, returnItem)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local ingredientCount = 0
-    local neededIngredients = #items
+    local removedItems = {}
+    local removed = true
     for k,v in pairs(items) do
         local item = Player.Functions.GetItemByName(v.item)
         if item then
-            if Player.Functions.RemoveItem(v.item, v.amount) then 
-                ingredientCount = ingredientCount + 1
+            if Player.Functions.RemoveItem(v.item, v.amount) then
+                table.insert(removedItems, {item = v.item, amount = v.amount}) 
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[v.item], "remove", v.amount)
+                removed =  removed and true
+            else
+                removed =  removed and false
             end
         end
     end
-    if neededIngredients == ingredientCount then
+    if removed then
         for k,v in pairs(returnItem) do
             if Player.Functions.AddItem(v.item, v.amount, false, {}, false) then
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[v.item], "add", v.amount)
             end
         end
+    else
+        for k, v in pairs(removedItems) do
+            Player.Functions.AddItem(v.item, v.amount)
+            TriggerClientEvent("inventory:client:ItemBox", src, QBCore.Shared.Items[v.item], "add")
+        end
+        TriggerClientEvent('QBCore:Notify', src, "Looks like you dropped some items!", "error")
     end
 end)
